@@ -11,5 +11,8 @@
         <label for="data">Data wydania</label>
         <input required type="date" name="data" [(ngModel)]="data" />
     </div>
+    
     <input type="submit" [disabled]="formularz.invalid" value="Zapisz" />
+    
+    <button *ngIf="id != null && id > 0" type="button" (click)="onDelete()">Usuń film</button>
 </form>

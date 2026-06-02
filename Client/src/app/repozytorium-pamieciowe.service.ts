@@ -6,6 +6,9 @@ import { FilmClass } from './classes/film.class';
 
 @Injectable()
 export class RepozytoriumPamiecioweService implements GetDataInterface, FormSubmitInterface {
+  Delete(id: number): Observable<boolean> {
+    throw new Error('Method not implemented.');
+  }
   private idGenerator = 1;
   private readonly data: FilmClass[] = [
     new FilmClass(this.idGenerator++, "Madagaskar", 10.00, new Date(2005, 4, 25)),

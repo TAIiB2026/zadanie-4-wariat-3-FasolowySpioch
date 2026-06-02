@@ -92,4 +92,25 @@ export class FormularzComponent {
         this.wczytywanie = false;
     }})
   }
+  public onDelete() {
+    if (this.id != null && this.id > 0) {
+      if (confirm("Czy na pewno chcesz usunąć ten film?")) {
+        this.wczytywanie = true;
+        this.submitService.Delete(this.id).subscribe({
+          next: (res) => {
+            if (res) {
+              this.router.navigateByUrl("/filmy");
+            } else {
+              alert("Wystąpił błąd podczas próby usunięcia.");
+              this.wczytywanie = false;
+            }
+          },
+          error: (err) => {
+            alert("Wystąpił błąd podczas próby usunięcia.");
+            this.wczytywanie = false;
+          }
+        });
+      }
+    }
+  }
 }

@@ -10,6 +10,9 @@ import { FORM_SUBMIT_TOKEN } from './tokens/form-submit.token';
 import { GET_DATA_TOKEN } from './tokens/get-data.token';
 import localePl from '@angular/common/locales/pl';
 import { registerLocaleData } from '@angular/common';
+import { GetDataService } from './services/get-data.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormSubmitService } from './services/from-submit.service';
 
 registerLocaleData(localePl);
 
@@ -22,15 +25,16 @@ registerLocaleData(localePl);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     RepozytoriumPamiecioweService, 
     {
-      provide: GET_DATA_TOKEN, useExisting: RepozytoriumPamiecioweService,
+      provide: GET_DATA_TOKEN,  useClass: GetDataService,
     }, 
     {
-      provide: FORM_SUBMIT_TOKEN, useExisting: RepozytoriumPamiecioweService
+      provide: FORM_SUBMIT_TOKEN, useClass: FormSubmitService
     },
     { 
       provide: LOCALE_ID, useValue: 'pl-PL' 
